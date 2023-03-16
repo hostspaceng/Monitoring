@@ -19,7 +19,7 @@ spec:
     targetRevision: 6.52.2
     helm:
       valueFiles:
-        - $hostspacengRepo/argocd-apps/eks-apps/values/grafana.yaml         
+        - $hostspacengRepo/argocd-apps/values/grafana.yaml         
   syncPolicy:
     automated:
       prune: true
