@@ -1,16 +1,3 @@
-server:
-  ingress:
-    enabled: true
-    annotations:
-      kubernetes.io/ingress.class: nginx
-    hosts:
-      - prometheus.devops-playground.com
-prometheus-pushgateway:
-  service:
-    type: LoadBalancer
-alertmanager:
-  service:
-    type: LoadBalancer
 extraScrapeConfigs: |
   - job_name: opencost
     honor_labels: true
