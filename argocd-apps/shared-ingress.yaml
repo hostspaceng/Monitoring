@@ -1,0 +1,49 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: monitoring-ingress
+  namespace: helium-monitoring
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "monitoring-static-ip"
+spec:
+  rules:
+  - host: "monitoring.hostspaceng.com"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/prometheus"
+        backend:
+          service:
+            name: prometheus-server
+            port:
+              number: 80
+  - host: "monitoring.hostspaceng.com"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/alertmanager"
+        backend:
+          service:
+            name: prometheus-alertmanager
+            port:
+              number: 9093
+  - host: "monitoring.hostspaceng.com"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/pushgateway"
+        backend:
+          service:
+            name: prometheus-prometheus-pushgateway
+            port:
+              number: 9091
+  - host: "monitoring.hostspaceng.com"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/grafana"
+        backend:
+          service:
+            name: grafana
+            port:
+              number: 80
